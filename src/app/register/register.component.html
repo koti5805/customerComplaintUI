@@ -1,0 +1,45 @@
+
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h3>Customer Registration</h3>
+  <form (ngSubmit)="register()" #signupForm="ngForm">
+
+    <div class="form-group">
+      <label for="name">Email Address</label>
+      <input type="email" class="form-control" id="emailaddress" required [(ngModel)]="registerUserData.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+        #email="ngModel">
+      <!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div [hidden]="!email.hasError('required')">Email is required</div>
+        <div [hidden]="!email.hasError('pattern')">Email format should be
+          <small>
+            <b>joe@abc.com</b>
+          </small>
+        </div>
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="name">Mobile Number</label>
+      <input type="text" class="form-control" id="mobilenumber" required [(ngModel)]="registerUserData.mobile" name="mobilenumber" pattern="[0-9]*"
+        minlength="10" maxlength="10" #mobile="ngModel">
+      <!-- <div [hidden]="mobile.valid || mobile.pristine" class="alert alert-danger">
+        <div [hidden]="!mobile.hasError('minlength')">Mobile should be 10digit</div>
+        <div [hidden]="!mobile.hasError('required')">Mobile is required</div>
+        <div [hidden]="!mobile.hasError('pattern')">Mobile numberr should be only numbers</div>
+      </div> -->
+
+    </div>
+    <div class="form-group">
+      <label for="name">Password</label>
+      <input type="password" class="form-control" id="password" required [(ngModel)]="registerUserData.password" name="password" #password="ngModel">
+      <!-- <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        Password is required
+      </div> -->
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" [disabled]="!signupForm.form.valid" class="btn btn-primary">Register</button>
+      <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+    </div>
+  </form>
+</div>

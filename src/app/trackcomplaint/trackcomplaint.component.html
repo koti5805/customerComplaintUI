@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-5">
+          <h2>Tracking Status</h2>
+        </div>
+        <div class="col-sm-7">
+          <button (click)="logout()" class="btn btn-primary">Logout</button>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <form createcomplaint="ngForm">
+        <table class="table table-hover table-responsive table-bordered">
+          <tr>
+            <td>Complaint name</td>
+            <td>
+              <input [(ngModel)]="complaintform.cmplnt_title" [readonly]="true" name="name" type="text" class="form-control" required />
+            </td>
+          </tr>
+          <tr>
+            <td>Complaint Description</td>
+            <td>
+              <textarea [(ngModel)]="complaintform.cmplnt_desc" [readonly]="true" name="description" class="form-control" required></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Created On</td>
+            <td>
+              {{complaintform.created_dt}}
+            </td>
+          </tr>
+          <tr>
+            <td>Updated On</td>
+            <td>
+              {{complaintform.upd_dt}}
+            </td>
+          </tr>
+          <tr *ngIf="agnt_id.agnt_id">
+            <td>Status</td>
+            <td>
+              <select class="form-control" name="status" [(ngModel)]="complaintform.status">
+                <option value="0">Active</option>
+                <option value="1">Assigned</option>
+                <option value="2">Processing</option>
+                <option value="3">Solved</option>
+                <option value="4">Not Assigned</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <p style="    font-size: 22px;background-color: lightgray;">Comments</p>
+        <div *ngFor="let cmnts of cmnts">
+            <div class="row">
+                <p *ngIf="ShwCmnts" [style.float] = "cmnts.cust_id ? 'left' : 'right'">{{cmnts.cmnt}}</p>
+                <p *ngIf="ShwCmnts" [style.float] = "cmnts.cust_id ? 'left' : 'right'">{{cmnts.created_dt}}</p>
+            </div>
+          
+        </div>
+
+        <button (click)="addComment()" style="font-size: 15px;cursor: pointer;">add a comment</button>
+        <div *ngIf="ShwCmntTxtx">
+          <textarea [(ngModel)]="cmnt" name="comment" rows="3" cols="90" style="    width: 100%;">                             
+        </textarea>
+          <button (click)="SubmitComment()">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
